@@ -115,7 +115,7 @@ public class Chassis extends Subsystem {
 	public double turnSpeed = 0.125;
 	
 	//this is used in the CenteredVision method.
-	public boolean centered = false;
+	public boolean isCentered = false;
 	public boolean isDone = false;
 	
 	public void StartVision() {
@@ -133,6 +133,8 @@ public class Chassis extends Subsystem {
 			}
 			else if (Robot.vision.PixyX < rightX && Robot.vision.PixyX < leftX) {
 				centeredVision();
+				isCentered = true;
+				isDone = true;
 			}
 		}
 		
