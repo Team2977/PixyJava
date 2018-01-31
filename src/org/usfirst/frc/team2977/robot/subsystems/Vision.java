@@ -23,6 +23,7 @@ public class Vision extends Subsystem {
 	public int PixyWidth;
 	public int PixyHeight;
 	public int PixyArea;
+	public boolean CanSeeBlock = false;
 
 
 	public Vision() {
@@ -41,18 +42,26 @@ public class Vision extends Subsystem {
 			}
 			if (packet1[i - 1] == null) {
 				SmartDashboard.putString("Test Pixy Error: " + i, "True");
+				CanSeeBlock =  false;
 				continue;
 			}
-			SmartDashboard.putNumber("Pixy X Value: " + i, packet1[i - 1].X);
-			SmartDashboard.putNumber("Pixy Y Value: " + i, packet1[i - 1].Y);
-			SmartDashboard.putNumber("Pixy Width Value: " + i, packet1[i - 1].Width);
-			SmartDashboard.putNumber("Pixy Height Value: " + i, packet1[i - 1].Height);
-			SmartDashboard.putString("Pixy Error: " + i, "False");
-			
+			//this is setting the ints in this subsystem
 			PixyX = packet1[i - 1].X;
 			PixyY = packet1[i - 1].Y;
 			PixyWidth = packet1[i - 1].Width;
 			PixyHeight = packet1[i - 1].Height;
+			CanSeeBlock = true;
+			/*
+			SmartDashboard.putNumber("Pixy X Value: " + i, packet1[i - 1].X);
+			SmartDashboard.putNumber("Pixy Y Value: " + i, packet1[i - 1].Y);
+			SmartDashboard.putNumber("Pixy Width Value: " + i, packet1[i - 1].Width);
+			SmartDashboard.putNumber("Pixy Height Value: " + i, packet1[i - 1].Height);
+			*/
+			SmartDashboard.putNumber("Pixy X Value: " + i, PixyX);
+			SmartDashboard.putNumber("Pixy Y Value: " + i, PixyY);
+			SmartDashboard.putNumber("Pixy Width Value: " + i, PixyWidth);
+			SmartDashboard.putNumber("Pixy Height Value: " + i, PixyHeight);
+			SmartDashboard.putString("Pixy Error: " + i, "False");
 		}
 	}
 

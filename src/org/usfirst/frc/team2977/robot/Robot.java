@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2977.robot.commands.IdleVision;
+import org.usfirst.frc.team2977.robot.subsystems.Chassis;
 import org.usfirst.frc.team2977.robot.subsystems.Vision;
 
 /**
@@ -20,6 +21,7 @@ public class Robot extends TimedRobot {
 	public static OI m_oi;
 	
 	public static final Vision vision = new Vision();
+	public static final Chassis chassis = new Chassis();
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
