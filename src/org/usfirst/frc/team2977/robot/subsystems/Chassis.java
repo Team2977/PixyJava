@@ -104,7 +104,9 @@ public class Chassis extends Subsystem {
 	}
 	
 	
-	/** ------------------ This is vision tracking stuff ------------------ **/
+	
+	/** ------------------  This is vision tracking stuff  ------------------ **/
+	/** It isnt very confusing but this is not needed if we arent using PIXY **/
 	//Set the parameters here below. The deadzone is in between the two numbers.
 	//If it is between the two numbers then it is done.
 	
