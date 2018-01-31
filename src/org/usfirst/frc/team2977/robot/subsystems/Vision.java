@@ -28,10 +28,6 @@ public class Vision extends Subsystem {
 	public Vision() {
 		pixyCamera = new PixyI2C("Pixy", new I2C(port, 0x4), packet1, new PixyException(print), new PixyPacket());
 	}
-
-	public void initDefaultCommand() {
-		setDefaultCommand(new IdleVision());
-	}
 	
 	public void testPixy() {
 		for (int i = 0; i < packet1.length; i++)
@@ -60,7 +56,7 @@ public class Vision extends Subsystem {
 		}
 	}
 
-	//This is what the Github I found from another team, Its basically calling all the information it can get.
+	//This is what the Github I found from another team, Its basically calling all the information the pixy can get.
 	public void testGearPixy() {
 		for (int i = 0; i < packet1.length; i++)
 			packet1[i] = null;
@@ -83,4 +79,7 @@ public class Vision extends Subsystem {
 		}
 	}
 
+	public void initDefaultCommand() {
+		setDefaultCommand(new IdleVision());
+	}
 }

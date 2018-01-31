@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class PixyI2C {
+	
+	//calling information, pretty self explanitory.
 	String name;
 	PixyPacket values;
 	I2C pixy;
@@ -13,8 +15,7 @@ public class PixyI2C {
 	PixyException pExc;
 	String print;
 
-	public PixyI2C(String id, I2C argPixy, PixyPacket[] argPixyPacket, PixyException argPixyException,
-			PixyPacket argValues) {
+	public PixyI2C(String id, I2C argPixy, PixyPacket[] argPixyPacket, PixyException argPixyException, PixyPacket argValues) {
 		pixy = argPixy;
 		packets = argPixyPacket;
 		pExc = argPixyException;
@@ -38,6 +39,7 @@ public class PixyI2C {
 	// object
 	// in
 	// pixymon you are trying to get data for
+	
 	public PixyPacket readPacket(int Signature) throws PixyException {
 		int Checksum;
 		int Sig;
