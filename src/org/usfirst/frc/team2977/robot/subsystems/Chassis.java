@@ -110,6 +110,7 @@ public class Chassis extends Subsystem {
 	
 	public int rightX;
 	public int leftX;
+	public double turnSpeed = 0.125;
 	
 	//this is used in the CenteredVision method.
 	public boolean centered = false;
@@ -117,32 +118,44 @@ public class Chassis extends Subsystem {
 	
 	public void StartVision() {
 		if(Robot.vision.CanSeeBlock == false) {
-			System.out.println("Pixy can't see the block. Cancelling the command press.");
+			System.out.println("Pixy can't find a block. Cancelling the command.");
 			isDone = true;
+			turnSpeed = 0;
 		}
 		else {
 			if(Robot.vision.PixyX > rightX) {
-				
+				turnRight();
 			}
 			else if (Robot.vision.PixyX > leftX) {
-				
+				turnLeft();
 			}
 			else if (Robot.vision.PixyX < rightX && Robot.vision.PixyX < leftX) {
-				
+				centeredVision();
 			}
 		}
-	}
-	
-	public void CenteredVision() {
 		
 	}
 	
+	public void centeredVision() {
+		fL.set(0);
+		bL.set(0);
+		fR.set(0);
+		bR.set(0);
+	}
+	
 	public void turnRight() {
+		fL.set(turnSpeed);
+		bL.set(turnSpeed);
+		fR.set(turnSpeed);
+		bR.set(turnSpeed);
 		
 	}
 	
 	public void turnLeft() {
-		
+		fL.set(turnSpeed);
+		bL.set(turnSpeed);
+		fR.set(-turnSpeed);
+		bR.set(-turnSpeed);
 	}
 	
 	
