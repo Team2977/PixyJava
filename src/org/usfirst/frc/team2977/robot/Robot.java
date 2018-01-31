@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package org.usfirst.frc.team2977.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -12,8 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2977.robot.commands.ExampleCommand;
-import org.usfirst.frc.team2977.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team2977.robot.commands.IdleVision;
 import org.usfirst.frc.team2977.robot.subsystems.Vision;
 
 /**
@@ -24,9 +16,9 @@ import org.usfirst.frc.team2977.robot.subsystems.Vision;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static final ExampleSubsystem kExampleSubsystem
-			= new ExampleSubsystem();
+
 	public static OI m_oi;
+	
 	public static final Vision vision = new Vision();
 
 	Command m_autonomousCommand;
@@ -39,7 +31,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		m_chooser.addDefault("Default Auto", new ExampleCommand());
+		m_chooser.addDefault("Default Auto", new IdleVision());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
