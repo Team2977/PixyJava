@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2977.robot.subsystems;
 
+import org.usfirst.frc.team2977.robot.Robot;
+
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -130,8 +132,10 @@ public class PixyI2C {
 
 		byte[] data = readData(12);
 		if (data == null) {
+			Robot.vision.CanSeeBlock = false;
 			return null;
 		}
+		Robot.vision.CanSeeBlock = true;
 		PixyPacket block = new PixyPacket();
 		block.Signature = cvt(data[1], data[0]);
 		if (block.Signature <= 0 || block.Signature > 7) {
@@ -146,6 +150,7 @@ public class PixyI2C {
 		if (sum != checksum) {
 			return null;
 		}
+		Robot.vision.CanSeeBlock = true;
 		return block;
 	}
 

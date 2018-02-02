@@ -3,6 +3,7 @@ package org.usfirst.frc.team2977.robot.subsystems;
 
 import org.usfirst.frc.team2977.robot.Robot;
 import org.usfirst.frc.team2977.robot.commands.DriveWithJoysticks;
+import org.usfirst.frc.team2977.robot.commands.StartTracking;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
@@ -110,44 +111,36 @@ public class Chassis extends Subsystem {
 	//Set the parameters here below. The deadzone is in between the two numbers.
 	//If it is between the two numbers then it is done.
 	
-	public int rightX;
-	public int leftX;
-	public double turnSpeed = 0.125;
+	public int rightX = 250;
+	public int leftX = 100;
+	public double turnSpeed = 0.2;
 	
 	//this is used in the CenteredVision method.
 	public boolean isCentered = false;
 	public boolean isDone = false;
 	
 	public void StartVision() {
-		if(Robot.vision.CanSeeBlock == false) {
-			System.out.println("Pixy can't find a block. Cancelling the command.");
-			isDone = true;
-			turnSpeed = 0;
-		}
-		else {
 			if(Robot.vision.PixyX > rightX) {
 				turnRight();
 			}
 			else if (Robot.vision.PixyX > leftX) {
-				turnLeft();
-			}
-			else if (Robot.vision.PixyX < rightX && Robot.vision.PixyX < leftX) {
 				centeredVision();
-				isCentered = true;
-				isDone = true;
+			}
+			else if (Robot.vision.PixyX < rightX && Robot.vision.PixyX > leftX) {
+				//centeredVision();
+				//StartTracking.isDone = true;
 			}
 		}
-		
-	}
 	
 	public void centeredVision() {
 		fL.set(0);
 		bL.set(0);
 		fR.set(0);
 		bR.set(0);
+		isDone = true;
 	}
 	
-	public void turnRight() {
+	public void turnLeft() {
 		fL.set(turnSpeed);
 		bL.set(turnSpeed);
 		fR.set(turnSpeed);
@@ -155,9 +148,9 @@ public class Chassis extends Subsystem {
 		
 	}
 	
-	public void turnLeft() {
-		fL.set(turnSpeed);
-		bL.set(turnSpeed);
+	public void turnRight() {
+		fL.set(-turnSpeed);
+		bL.set(-turnSpeed);
 		fR.set(-turnSpeed);
 		bR.set(-turnSpeed);
 	}
@@ -165,7 +158,7 @@ public class Chassis extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new DriveWithJoysticks());
+        //setDefaultCommand(new DriveWithJoysticks());
     }
 
 }

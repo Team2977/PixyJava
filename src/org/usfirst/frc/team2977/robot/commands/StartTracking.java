@@ -16,18 +16,21 @@ public class StartTracking extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	//Robot.chassis.turnSpeed = .2;
     	Robot.chassis.isDone = false;
     	Robot.chassis.isCentered = false;
-    	System.out.println("Starting to track with pixy");
+    	Robot.vision.CanSeeBlock = false;
+    	Robot.chassis.centeredVision();
     }
 
-    public boolean isDone;
+    public static boolean isDone;
     public boolean isCentered;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.StartVision();
     	isDone = Robot.chassis.isDone;
     	isCentered = Robot.chassis.isCentered;
+    	
+    	Robot.chassis.StartVision();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -37,6 +40,7 @@ public class StartTracking extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.chassis.turnSpeed = 0;
     	System.out.println("Stopped running StartTracking command");
     }
 
