@@ -2,7 +2,6 @@ package org.usfirst.frc.team2977.robot.subsystems;
 
 
 import org.usfirst.frc.team2977.robot.Robot;
-import org.usfirst.frc.team2977.robot.commands.DriveWithJoysticks;
 import org.usfirst.frc.team2977.robot.commands.StartTracking;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -111,9 +110,9 @@ public class Chassis extends Subsystem {
 	//Set the parameters here below. The deadzone is in between the two numbers.
 	//If it is between the two numbers then it is done.
 	
-	public int rightX = 250;
+	public int rightX = 200;
 	public int leftX = 100;
-	public double turnSpeed = 0.2;
+	public double turnSpeed = 0.25;
 	
 	//this is used in the CenteredVision method.
 	public boolean isCentered = false;
@@ -123,11 +122,11 @@ public class Chassis extends Subsystem {
 			if(Robot.vision.PixyX > rightX) {
 				turnRight();
 			}
-			else if (Robot.vision.PixyX > leftX) {
-				centeredVision();
+			else if (Robot.vision.PixyX < leftX) {
+				turnLeft();
 			}
 			else if (Robot.vision.PixyX < rightX && Robot.vision.PixyX > leftX) {
-				//centeredVision();
+				centeredVision();
 				//StartTracking.isDone = true;
 			}
 		}
@@ -137,7 +136,7 @@ public class Chassis extends Subsystem {
 		bL.set(0);
 		fR.set(0);
 		bR.set(0);
-		isDone = true;
+		//isDone = true;
 	}
 	
 	public void turnLeft() {

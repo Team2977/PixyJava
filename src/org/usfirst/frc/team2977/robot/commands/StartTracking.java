@@ -20,17 +20,16 @@ public class StartTracking extends Command {
     	Robot.chassis.isDone = false;
     	Robot.chassis.isCentered = false;
     	Robot.vision.CanSeeBlock = false;
-    	Robot.chassis.centeredVision();
+    	//Robot.chassis.centeredVision();
     }
 
     public static boolean isDone;
     public boolean isCentered;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.chassis.StartVision();
     	isDone = Robot.chassis.isDone;
     	isCentered = Robot.chassis.isCentered;
-    	
-    	Robot.chassis.StartVision();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -40,8 +39,8 @@ public class StartTracking extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.chassis.turnSpeed = 0;
-    	System.out.println("Stopped running StartTracking command");
+    	//Robot.chassis.turnSpeed = 0;
+    	//System.out.println("Stopped running StartTracking command");
     }
 
     // Called when another command which requires one or more of the same
