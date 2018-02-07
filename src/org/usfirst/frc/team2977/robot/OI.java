@@ -14,4 +14,15 @@ public class OI {
 		abutton.whenPressed(new StartTracking());
 	}
 	
+	public double getLeftY() {
+		return stick.getRawAxis(1);
+	}
+	
+	public double getLeftX()
+	{
+		return stick.getRawAxis(0);
+	}
+	public double getRightY() {
+		return stick.getRawAxis(5);
+	}
 }

@@ -179,7 +179,6 @@ public class PixyI2C {
 			} else if (word == START_WORD_CC && lastWord == START_WORD) {
 				return true;
 			} else if (word == START_WORD_X) {
-				byte[] data = readData(1);
 				numBytesRead += 1;
 			}
 			lastWord = word;
